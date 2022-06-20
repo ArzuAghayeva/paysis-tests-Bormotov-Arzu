@@ -52,4 +52,38 @@ describe('Transactions', function() {
       expect(userToAfter.amount).to.eq(userToBefore.amount + amount)
     })
   })
+
+  describe('Get single transaction', function() {
+    let usersHelper = new UsersHelper()
+    let userFrom
+    let userTo
+    let transaction
+    let getTransaction
+    const amount = 100
+
+    before(async function() {
+      await usersHelper.create()
+      userFrom = usersHelper.response.body.id
+      await usersHelper.create()
+      userTo = usersHelper.response.body.id
+      transaction = await transactionsHelper.create(userFrom, userTo, amount)
+      getTransaction = await transactionsHelper.get(transaction.body.id)
+    })
+
+    it('response status code is 200', function() {
+      expect(getTransaction.status).to.eq(200)
+    })
+
+    it('response body contains transaction id', function() {
+      expect(getTransaction.body.id).to.eq(transaction.body.id)
+    })
+
+    it('response body contains id of sender', function() {
+      expect(getTransaction.body.from).to.eq(userFrom)
+    })
+
+    it('response body contains id of receiver', function() {
+      expect(getTransaction.body.to).to.eq(userTo)
+    })
+  })
 })

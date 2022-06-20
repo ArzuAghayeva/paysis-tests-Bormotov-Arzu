@@ -12,4 +12,10 @@ function create(from, to, amount) {
     .send(body)
 }
 
-export { create }
+function get(transactionId = '') {
+  return supertest(process.env.BASE_URL)
+    .get(`/transactions${transactionId !== '' ? `?id=${transactionId}` : ''}`)
+    .set('Authorization', `Bearer ${process.env.TOKEN}`)
+}
+
+export { create, get }

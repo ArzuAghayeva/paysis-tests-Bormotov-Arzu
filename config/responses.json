@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "valid": {
+      "token": "ba89bd96-ce27-4c9d-85f8-313795a8b5de"
+    },
+    "invalid": {
+      "message": "Wrong login or password."
+    }
+  }
+}

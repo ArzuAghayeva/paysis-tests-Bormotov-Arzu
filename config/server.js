@@ -17,6 +17,22 @@ function start(port) {
       await res.status(404).send(responses.auth.invalid)
   })
 
+  app.post('/users', async function(req, res) {
+    await res.status(200).send(responses.users.create)
+  })
+
+  app.get('/users', async function(req, res) {
+    const id = req.query.id
+    if (id)
+      await res.status(200).send({ id: id, amount: 1000 })
+    else
+      await res.status(200).send(responses.users.getAll)
+  })
+
+  app.delete('/users', async function(req, res) {
+    await res.status(200).send(responses.users.delete)
+  })
+
   before(async function() {
     server = await app.listen(port)
     console.log(`Mock server is running on port ${port}`)

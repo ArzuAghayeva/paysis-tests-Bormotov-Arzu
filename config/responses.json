@@ -6,5 +6,24 @@
     "invalid": {
       "message": "Wrong login or password."
     }
+  },
+  "users": {
+    "create": {
+      "id": "abracadabra",
+      "amount": 1000
+    },
+    "getAll": [
+      {
+        "id": "abracadabra1",
+        "amount": 1000
+      },
+      {
+        "id": "abracadabra2",
+        "amount": 1000
+      }
+    ],
+    "delete": {
+      "message": "User deleted."
+    }
   }
 }
